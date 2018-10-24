@@ -7,13 +7,13 @@ provider "aws" {
 resource "aws_instance" "iac_begin" {
   ami = "${var.ami}"
   instance_type = "${var.size}"
-  key_name = "mainkey-pub"
+  key_name = "${aws_key_pair.mainkey.key_name}"
   vpc_security_group_ids = ["${aws_security_group.secgroup1.id}"]
   subnet_id = "${aws_subnet.main.id}"
   associate_public_ip_address = true
 }
 resource "aws_vpc" "vpc" {
-  cidr_block = "172.128.64.0/24"
+  cidr_block = "${var.vpc_subnet}"
   enable_dns_hostnames = "True"
 }
 
@@ -23,7 +23,7 @@ resource "aws_internet_gateway" "ig" {
 }
 resource "aws_subnet" "main" {
   vpc_id     = "${aws_vpc.vpc.id}"
-  cidr_block = "172.128.64.20/25"
+  cidr_block = "${var.subnet_one}"
   map_public_ip_on_launch = true
 }
 resource "aws_security_group" "secgroup1" {
