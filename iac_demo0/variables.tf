@@ -10,6 +10,12 @@ variable "ami" {
 variable "size" {
   default = "t2.micro"
 }
+variable "vpc_subnet" {
+  default = "172.128.64.0/24"
+}
+variable "subnet_one" {
+  default = "172.128.64.20/25"
+}
 variable "myip" {
   type = "list"
   default = ["192.168.1.1"]
