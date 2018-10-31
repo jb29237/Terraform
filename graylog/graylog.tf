@@ -11,7 +11,12 @@ resource "aws_instance" "graylog" {
   vpc_security_group_ids      = ["${aws_security_group.secgroup1.id}"]
   subnet_id                   = "${aws_subnet.main.id}"
   associate_public_ip_address = true
+  root_block_device {
+    delete_on_termination = true  
+  }
 }
+
+
 
 resource "aws_vpc" "vpc" {
   cidr_block           = "${var.vpc_subnet}"

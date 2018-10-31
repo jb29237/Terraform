@@ -10,7 +10,7 @@ variable "ami" {
 }
 
 variable "size" {
-  default = "t2.micro"
+  default = "t2.medium"
 }
 
 variable "vpc_subnet" {
